@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage[a4paper, left=0.855in, right=0.855in, top=0.75in, bottom=0.75in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titling}
+\usepackage{indentfirst}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\geometry{margin=1in}
+\title{SML Assignment 1}
+\author{Dongju Ma \\ A1942340}
+\date{\today \\ Trimester 2}
+
+
+\begin{document}
+\maketitle
+
+\section*{Question 1a: Closed-Form Solution Derivation}
+\subsection*{Derivation}
+$$
+\nabla_W(J( {W})) 
+=\frac{\partial}{\partial W}\frac{1}{2m}||\hat{ {Y}} -  {Y}||_2^2 
+=\frac{\partial}{\partial W}\frac{1}{2m}(XW - Y )^T (XW - Y). 
+$$
+Denote that $X \in \mathbb{R}^ {m \times n}, Y \in \mathbb{R}^ {m \times 1}$ and $W\in \mathbb{R}^ {n \times 1}$, \\
+hence ${(W^TX^TY)}^T = Y^TXW =W^TX^TY$ due to each term is scalar. \\  
+Using the identify $(AB)^T = B^T A^T$ and expanding the square
+$$
+    J(W) = \frac{1}{2m}(XW - Y )^T (XW - Y) = \frac{1}{2m} \left( W^T X^T X W - 2 W^T X^T Y + Y^TY \right).
+$$
+Apply partial derivatives to $J(W)$
+$$
+    \nabla_W(J( {W})) = \frac{1}{2m} (2X^TX W - 2 X^T Y)
+$$
+To minimize $ J( {W}) $,  we should compare $\nabla_W(J( {W}))$ to 0, therefore
+$$
+\nabla_W(J( {W})) = 0 \quad \Rightarrow \quad X^TX W = X^T Y
+$$
+multiply both sides of the equation by $(X^TX)^{-1}$, thus
+$$
+W = (X^TX)^{-1} X^T Y
+$$
+
+\subsection*{Matrix Alignment Verification}
+Given that $X \in \mathbb{R}^{5 \times 3}$ and $Y \in \mathbb{R}^{5 \times 1}$,  
+we can compute the dimension of $W$ by the following steps, Since
+$$
+W = (X^TX)^{-1} X^T Y,
+$$
+\begin{align*}
+X^T \in \mathbb{R}^{3 \times 5} &\Rightarrow X^TX \in \mathbb{R}^{3 \times 3}
+\Rightarrow (X^TX)^{-1} \in \mathbb{R}^{3 \times 3} \\
+&\Rightarrow (X^TX)^{-1} X^T \in \mathbb{R}^{3 \times 5} \\ 
+&\Rightarrow (X^TX)^{-1} X^T Y = W \in \mathbb{R}^{3 \times 1}
+\end{align*}
+Thus $\hat{Y} $ has the dimension of that
+$$
+\hat{Y} = XW \Rightarrow \hat{Y} \in \mathbb{R}^{5 \times 1}
+$$
+Which makes $\hat{Y}$ has the same dimension with $Y$, the alignment is correct.
+\end{document}
